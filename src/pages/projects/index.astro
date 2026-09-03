@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/paths';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const built = projects.filter((project) => project.data.kind === 'project');
+const labNotes = projects.filter((project) => project.data.kind === 'lab-note');
+---
+
+<BaseLayout
+  title="Projects · machinedi lab"
+  description="Projects Edi actually built: an agent operations console, Trainer OS, and household lab notes."
+>
+  <p class="kicker">projects</p>
+  <h1>Built, then written down<span class="accent-rule"></span></h1>
+  <div class="page-intro">
+    <p>
+      Two systems I use. Three household lab notes, not products for sale. Proof, not a catalog.
+    </p>
+  </div>
+
+  <ul class="entry-list">
+    {
+      built.map((project) => (
+        <li>
+          <p class="entry-status">{project.data.status}</p>
+          <a class="title" href={withBase(`/projects/${project.id}/`)}>
+            {project.data.title}
+          </a>
+          <p>{project.data.summary}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="section-head">
+    <h2>Lab notes</h2>
+  </div>
+  <ul class="entry-list">
+    {
+      labNotes.map((project) => (
+        <li class="lab-note">
+          <p class="entry-status">{project.data.status}</p>
+          <a class="title" href={withBase(`/projects/${project.id}/`)}>
+            {project.data.title}
+          </a>
+          <p>{project.data.summary}</p>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
