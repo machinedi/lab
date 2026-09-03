@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
+---
+
+<BaseLayout
+  title="Not found · machinedi lab"
+  description="This page is not in the lab."
+>
+  <div class="not-found">
+    <p class="kicker">404</p>
+    <h1>Nothing here<span class="accent-rule"></span></h1>
+    <p>That URL is not a page on this site.</p>
+    <p class="meta-links">
+      <a href={withBase('/')}>Home</a>
+      <a href={withBase('/projects/')}>Projects</a>
+      <a href={withBase('/notes/')}>Notes</a>
+    </p>
+  </div>
+</BaseLayout>

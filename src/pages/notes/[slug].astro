@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map((note) => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+const isComing = note.data.status === 'coming';
+---
+
+<BaseLayout title={`${note.data.title} · machinedi lab`} description={note.data.description}>
+  <p class="kicker">note</p>
+  <h1>{note.data.title}<span class="accent-rule"></span></h1>
+  {
+    isComing ? (
+      <>
+        <p class="coming-banner">Coming</p>
+        {note.data.listing !== 'title' && <p class="lede">{note.data.description}</p>}
+      </>
+    ) : (
+      <article class="prose">
+        <Content />
+      </article>
+    )
+  }
+</BaseLayout>

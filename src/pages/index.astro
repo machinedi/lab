@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
+
+const featured = (await getCollection('projects'))
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Edi Rodin · machinedi lab"
+  description="Edi Rodin turns repeating, expensive work into agent systems that run with precision, not almost. This site is the lab."
+>
+  <p class="kicker">lab notebook</p>
+  <h1>Edi Rodin<span class="accent-rule"></span></h1>
+
+  <div class="lede home-lede">
+    <p>
+      I turn repeating, expensive work into agent systems that run with precision, not almost.
+    </p>
+    <p>
+      At work that looks like knowledge engines agents can act on, wired into live processes, and a Windows console I designed so you can see the work, follow the workflow, and keep the outputs. At home I run the same discipline on the household, the budget, the shopping list, even training plans.
+    </p>
+    <p>
+      This site is the lab. Projects I actually built. Notes on how to design for accuracy when an agent is allowed to do real work.
+    </p>
+    <p class="closing">
+      No courses. No demos for their own sake. If it is not precise enough to trust, it does not ship.
+    </p>
+  </div>
+
+  <p class="meta-links">
+    <a href="https://www.linkedin.com/in/edi-rodin">LinkedIn</a>
+    <a href={withBase('/notes/')}>Notes</a>
+    <a href={withBase('/rss.xml')}>RSS</a>
+  </p>
+
+  <div class="section-head">
+    <h2>Featured work</h2>
+    <a href={withBase('/projects/')}>All projects</a>
+  </div>
+  <ul class="entry-list">
+    {
+      featured.map((project) => (
+        <li>
+          <p class="entry-status">{project.data.status}</p>
+          <a class="title" href={withBase(`/projects/${project.id}/`)}>
+            {project.data.title}
+          </a>
+          <p>{project.data.summary}</p>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

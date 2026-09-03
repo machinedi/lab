@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/paths';
+
+const notes = await getCollection('notes');
+const published = notes
+  .filter((note) => note.data.listing === 'full')
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const abstracts = notes.filter((note) => note.data.listing === 'abstract');
+const titles = notes.filter((note) => note.data.listing === 'title');
+---
+
+<BaseLayout
+  title="Notes · machinedi lab"
+  description="Essays on designing agent systems for accuracy when the agent is allowed to do real work."
+>
+  <p class="kicker">notes</p>
+  <h1>How to design for accuracy<span class="accent-rule"></span></h1>
+  <div class="page-intro">
+    <p>
+      Writing about structure, learning loops, update routines, and wiring agents into live processes. One published essay. The rest is queued.
+    </p>
+  </div>
+
+  <ul class="entry-list">
+    {
+      published.map((note) => (
+        <li>
+          <p class="note-status">
+            {note.data.pubDate.toLocaleDateString('en-GB', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </p>
+          <a class="title" href={withBase(`/notes/${note.id}/`)}>
+            {note.data.title}
+          </a>
+          <p>{note.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="section-head">
+    <h2>Coming</h2>
+  </div>
+  <ul class="entry-list">
+    {
+      abstracts.map((note) => (
+        <li>
+          <p class="note-status">Coming</p>
+          <a class="title" href={withBase(`/notes/${note.id}/`)}>
+            {note.data.title}
+          </a>
+          <p class="note-abstract">{note.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <ul class="coming-list">
+    {
+      titles.map((note) => (
+        <li>
+          {note.data.title}
+          <span class="coming-flag">coming</span>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
