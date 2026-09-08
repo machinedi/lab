@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ConsoleSchematic from '../../components/ConsoleSchematic.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -13,15 +12,13 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const isConsole = project.id === 'agent-operations-console';
 ---
 
-<BaseLayout title={`${project.data.title} · machinedi lab`} description={project.data.summary}>
-  <p class="kicker">{project.data.kind === 'lab-note' ? 'lab note' : 'project'}</p>
-  <h1>{project.data.title}<span class="accent-rule"></span></h1>
-  <p class="entry-status">{project.data.status}</p>
+<BaseLayout title={`${project.data.title} · machinedi`} description={project.data.summary}>
+  <p class="entry-status">{project.data.kind === 'lab-note' ? 'Personal lab note' : 'Project'}</p>
+  <h1>{project.data.title}</h1>
+  <p class="position">{project.data.status}</p>
   <article class="prose">
     <Content />
-    {isConsole && <ConsoleSchematic />}
   </article>
 </BaseLayout>

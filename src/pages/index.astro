@@ -6,38 +6,29 @@ import { withBase } from '../lib/paths';
 const featured = (await getCollection('projects'))
   .filter((project) => project.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
+
+const recentNotes = (await getCollection('notes'))
+  .filter((note) => note.data.status === 'published')
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <BaseLayout
-  title="Edi Rodin · machinedi lab"
-  description="Edi Rodin turns repeating, expensive work into agent systems that run with precision, not almost. This site is the lab."
+  title="Edi Rodin · machinedi"
+  description="Edi Rodin documents the systems he builds and the hard logic behind them. Simple, reliable automations for small and mid-size businesses when needed."
 >
-  <p class="kicker">lab notebook</p>
-  <h1>Edi Rodin<span class="accent-rule"></span></h1>
+  <h1>Edi Rodin</h1>
+  <p class="position">Builder who documents systems and the hard logic behind them.</p>
 
-  <div class="lede home-lede">
+  <div class="lede">
     <p>
-      I turn repeating, expensive work into agent systems that run with precision, not almost.
-    </p>
-    <p>
-      At work that looks like knowledge engines agents can act on, wired into live processes, and a Windows console I designed so you can see the work, follow the workflow, and keep the outputs. At home I run the same discipline on the household, the budget, the shopping list, even training plans.
-    </p>
-    <p>
-      This site is the lab. Projects I actually built. Notes on how to design for accuracy when an agent is allowed to do real work.
-    </p>
-    <p class="closing">
-      No courses. No demos for their own sake. If it is not precise enough to trust, it does not ship.
+      I write down the projects I build and the logical problems they had to survive. When a
+      small or mid-size business needs a simple, reliable automation, I help design and ship it.
     </p>
   </div>
 
-  <p class="meta-links">
-    <a href="https://www.linkedin.com/in/edi-rodin">LinkedIn</a>
-    <a href={withBase('/notes/')}>Notes</a>
-    <a href={withBase('/rss.xml')}>RSS</a>
-  </p>
-
   <div class="section-head">
-    <h2>Featured work</h2>
+    <h2>Projects</h2>
     <a href={withBase('/projects/')}>All projects</a>
   </div>
   <ul class="entry-list">
@@ -53,4 +44,44 @@ const featured = (await getCollection('projects'))
       ))
     }
   </ul>
+
+  {
+    recentNotes.length > 0 && (
+      <>
+        <div class="section-head">
+          <h2>Notes</h2>
+          <a href={withBase('/notes/')}>All notes</a>
+        </div>
+        <ul class="entry-list">
+          {recentNotes.map((note) => (
+            <li>
+              <p class="note-status">
+                {note.data.pubDate.toLocaleDateString('en-GB', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </p>
+              <a class="title" href={withBase(`/notes/${note.id}/`)}>
+                {note.data.title}
+              </a>
+              <p>{note.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  <section class="help">
+    <h2>Help</h2>
+    <p>
+      If you run a small or mid-size business and need a simple, efficient process or
+      automation, I take on a limited amount of that work. Email is the right place to start.
+    </p>
+    <p class="meta-links">
+      <a href="mailto:edi.rodin@gmail.com">edi.rodin@gmail.com</a>
+      <a href="https://www.linkedin.com/in/edi-rodin">LinkedIn</a>
+    </p>
+  </section>
 </BaseLayout>

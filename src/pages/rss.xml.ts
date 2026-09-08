@@ -11,8 +11,8 @@ export async function GET(context: APIContext) {
   const site = new URL(import.meta.env.BASE_URL, context.site).href;
 
   return rss({
-    title: 'machinedi lab notes',
-    description: 'Notes on designing agent systems that run with precision, not almost.',
+    title: 'machinedi notes',
+    description: 'Notes from Edi Rodin on systems, compiled knowledge, and hard logic.',
     site,
     items: notes.map((note) => ({
       title: note.data.title,

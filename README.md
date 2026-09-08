@@ -1,8 +1,8 @@
-# machinedi lab
+# machinedi
 
-Personal lab site for **Edi Rodin**. Precise agent systems, not demos. Public brand mark: **machinedi**.
+Personal site for **Edi Rodin**. Public brand mark: **machinedi**. A lab, not a company.
 
-This is a static site (Astro + Markdown). Notes and project writeups are files you add, not a CMS.
+This is a static site (Astro + Markdown). Project writeups and notes are files you add, not a CMS.
 
 Live URL after GitHub Pages is enabled: [https://machinedi.github.io/lab/](https://machinedi.github.io/lab/)
 
@@ -40,11 +40,11 @@ listing: full       # full | abstract | title
 ---
 ```
 
-- `status: published` and `listing: full` puts the essay on `/notes`, in the RSS feed, and renders the Markdown body.
-- `status: coming` and `listing: abstract` shows the title plus description with a Coming label.
+- `status: published` and `listing: full` puts the note on `/notes`, in the RSS feed, and renders the Markdown body.
+- `status: coming` and `listing: abstract` shows the title plus description with a Draft label.
 - `status: coming` and `listing: title` lists the title only on `/notes`.
 
-Write the essay in Markdown below the front matter. Do not use em dashes.
+Write the note in Markdown below the front matter. Do not use em dashes.
 
 ## Add a project
 
@@ -65,8 +65,6 @@ order: 6            # lower numbers first
 
 Use `kind: lab-note` for household experiments that are not products for sale.
 
-The agent operations console page injects an SVG schematic when the slug is `agent-operations-console`.
-
 ## GitHub Pages
 
 The workflow in `.github/workflows/deploy.yml` builds the Astro site on every push to `main` and deploys with GitHub Actions.
@@ -85,7 +83,7 @@ Until that is set, the workflow can build but GitHub will not publish the site. 
 - `site: 'https://machinedi.github.io'`
 - `base: '/lab'`
 
-If you later move the site to a custom domain at the root, remove `base` and set `site` to that domain. Then update internal links are already using `withBase()`, so they will follow the new base.
+If you later move the site to a custom domain at the root, remove `base` and set `site` to that domain. Internal links already use `withBase()`, so they will follow the new base.
 
 ## Stack
 
