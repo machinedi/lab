@@ -1,10 +1,10 @@
 ---
 title: Household budget
-summary: A household budget treated as a live process, not a spreadsheet you open in a panic.
-status: Lab note
+summary: The household budget treated as a live process, not a spreadsheet opened in a panic.
+status: Personal lab note
 kind: lab-note
 featured: false
-order: 5
+order: 6
 ---
 
-Not a product for sale. A lab note on the household budget as a live process: current lines, recurring costs, and a place where an agent can flag drift without being allowed to invent a new financial story. Accuracy here is not a dashboard. It is whether the numbers still match the house.
+Not a product for sale. A personal lab note on the household budget as a live process: current lines, recurring costs, and a place to flag drift without inventing a new financial story. Accuracy here is whether the numbers still match the house.

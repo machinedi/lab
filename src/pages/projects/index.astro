@@ -9,14 +9,14 @@ const labNotes = projects.filter((project) => project.data.kind === 'lab-note');
 ---
 
 <BaseLayout
-  title="Projects · machinedi lab"
-  description="Projects Edi actually built: an agent operations console, Trainer OS, and household lab notes."
+  title="Projects · machinedi"
+  description="Systems Edi Rodin built, plus a few personal household lab notes."
 >
-  <p class="kicker">projects</p>
-  <h1>Built, then written down<span class="accent-rule"></span></h1>
+  <h1>Projects</h1>
   <div class="page-intro">
     <p>
-      Two systems I use. Three household lab notes, not products for sale. Proof, not a catalog.
+      Writeups of systems I built, and a few household lab notes. The lab notes are personal.
+      They are not products.
     </p>
   </div>
 
@@ -35,12 +35,12 @@ const labNotes = projects.filter((project) => project.data.kind === 'lab-note');
   </ul>
 
   <div class="section-head">
-    <h2>Lab notes</h2>
+    <h2>Personal lab notes</h2>
   </div>
   <ul class="entry-list">
     {
       labNotes.map((project) => (
-        <li class="lab-note">
+        <li>
           <p class="entry-status">{project.data.status}</p>
           <a class="title" href={withBase(`/projects/${project.id}/`)}>
             {project.data.title}

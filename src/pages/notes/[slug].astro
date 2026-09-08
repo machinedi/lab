@@ -15,13 +15,13 @@ const { Content } = await render(note);
 const isComing = note.data.status === 'coming';
 ---
 
-<BaseLayout title={`${note.data.title} · machinedi lab`} description={note.data.description}>
-  <p class="kicker">note</p>
-  <h1>{note.data.title}<span class="accent-rule"></span></h1>
+<BaseLayout title={`${note.data.title} · machinedi`} description={note.data.description}>
+  <p class="entry-status">Note</p>
+  <h1>{note.data.title}</h1>
   {
     isComing ? (
       <>
-        <p class="coming-banner">Coming</p>
+        <p class="coming-banner">Not written yet</p>
         {note.data.listing !== 'title' && <p class="lede">{note.data.description}</p>}
       </>
     ) : (

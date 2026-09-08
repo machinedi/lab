@@ -1,10 +1,10 @@
 ---
 title: Grocery automation
-summary: Recurring shopping that respects constraints, inventory, and the list you will actually take to the store.
-status: Lab note
+summary: A recurring shopping list that stays true to constraints, inventory, and the list I will actually take to the store.
+status: Personal lab note
 kind: lab-note
 featured: false
-order: 4
+order: 5
 ---
 
-Not a product for sale. A lab note on grocery automation: a list that stays true to household constraints, what is already in the pantry, and who will be home to eat it. The agent may draft. It does not get to spend until the list is the same object I would take to the store.
+Not a product for sale. A personal lab note on grocery automation: a list that stays true to household constraints, what is already in the pantry, and who will be home to eat it. A model may draft. It does not get to spend until the list is the same object I would take to the store.
