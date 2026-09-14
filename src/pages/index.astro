@@ -15,15 +15,15 @@ const recentNotes = (await getCollection('notes'))
 
 <BaseLayout
   title="Edi Rodin · machinedi"
-  description="Edi Rodin documents the systems he builds and the hard logic behind them. Simple, reliable automations for small and mid-size businesses when needed."
+  description="Edi Rodin documents systems and hard logic, and helps small and mid-size businesses with simple, reliable automations."
 >
   <h1>Edi Rodin</h1>
-  <p class="position">Builder who documents systems and the hard logic behind them.</p>
+  <p class="position">Documents systems and hard logic.</p>
 
   <div class="lede">
     <p>
-      I write down the projects I build and the logical problems they had to survive. When a
-      small or mid-size business needs a simple, reliable automation, I help design and ship it.
+      I write down the systems I build and the logical problems they had to survive. I also help
+      small and mid-size businesses with simple, reliable automations.
     </p>
   </div>
 
@@ -73,15 +73,8 @@ const recentNotes = (await getCollection('notes'))
     )
   }
 
-  <section class="help">
-    <h2>Help</h2>
-    <p>
-      If you run a small or mid-size business and need a simple, efficient process or
-      automation, I take on a limited amount of that work. Email is the right place to start.
-    </p>
-    <p class="meta-links">
-      <a href="mailto:edi.rodin@gmail.com">edi.rodin@gmail.com</a>
-      <a href="https://www.linkedin.com/in/edi-rodin">LinkedIn</a>
-    </p>
-  </section>
+  <p class="help-link">
+    If you run a small or mid-size business and need a simple process or automation, see
+    <a href={withBase('/help/')}>Help</a>.
+  </p>
 </BaseLayout>

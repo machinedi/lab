@@ -1,8 +1,6 @@
 ---
-import '@fontsource/ibm-plex-sans/400.css';
-import '@fontsource/ibm-plex-sans/500.css';
-import '@fontsource/ibm-plex-mono/500.css';
 import '../styles/global.css';
+import PrimaryNav from '../components/PrimaryNav.astro';
 import { withBase } from '../lib/paths';
 
 interface Props {
@@ -12,14 +10,6 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const current = path === base || path === `${base}/` ? '/' : path.slice(base.length) || '/';
-
-const nav = [
-  { href: withBase('/projects/'), label: 'Projects', match: '/projects' },
-  { href: withBase('/notes/'), label: 'Notes', match: '/notes' },
-];
 ---
 
 <!doctype html>
@@ -30,7 +20,7 @@ const nav = [
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content="Edi Rodin" />
-    <meta name="theme-color" content="#fafaf8" />
+    <meta name="theme-color" content="#f7f6f2" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <link
@@ -48,21 +38,7 @@ const nav = [
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
     <div class="site">
-      <header class="site-header">
-        <a class="brand" href={withBase('/')}>machinedi</a>
-        <nav class="nav" aria-label="Primary">
-          {
-            nav.map((item) => (
-              <a
-                href={item.href}
-                aria-current={current.startsWith(item.match) ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            ))
-          }
-        </nav>
-      </header>
+      <PrimaryNav />
       <main id="content">
         <slot />
       </main>
@@ -70,6 +46,8 @@ const nav = [
         <p>© Edi Rodin · machinedi · lab, not a company</p>
         <p>
           <a href="https://github.com/machinedi/lab">github.com/machinedi/lab</a>
+          <span aria-hidden="true"> · </span>
+          <a href={withBase('/contact/')}>Contact</a>
         </p>
       </footer>
     </div>
