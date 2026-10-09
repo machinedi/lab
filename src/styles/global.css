@@ -347,15 +347,19 @@ h3 {
   content: "";
   position: absolute;
   left: 0.22rem;
-  top: 0.55rem;
+  top: 0;
   bottom: 0;
   width: 1px;
-  background: var(--rule);
+  background: #cbb9a4;
+}
+
+.story > li:first-child::before {
+  top: 0.95rem;
 }
 
 .story > li:last-child::before {
   bottom: auto;
-  height: 0.85rem;
+  height: 1.2rem;
 }
 
 .story > li::after {
