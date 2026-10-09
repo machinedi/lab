@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StackChips from '../../components/StackChips.astro';
+
+const chapters = [
+  {
+    title: 'Where it started',
+    open: true,
+    paragraphs: [
+      'I wanted an agent to sort my email. When a message was a configuration question or a technical fault, something had to answer it. That something needed to know how each customer is set up, what the platform can do, and where its own knowledge ends.',
+    ],
+  },
+  {
+    title: 'The unfinished piece',
+    open: false,
+    paragraphs: [
+      "Months earlier we had started skills that turn a customer's live configuration into a readable document in a fixed template. Feeding them the company documentation worked well for config-to-document, and only partly for explaining how the platform behaves. The document work and the need for a technical brain became one model.",
+    ],
+  },
+  {
+    title: 'What broke first',
+    open: false,
+    paragraphs: [
+      'The generator worked on day one. It also exposed the real mess: settings with no written home, two correct sources that sounded like a contradiction because they spoke at different altitudes, and one word that meant three things depending on who said it.',
+    ],
+  },
+  {
+    title: 'The failure that taught the most',
+    open: false,
+    paragraphs: [
+      'A real question came in and the model hedged, while the right answer was already in the repo. It had searched what customers already have, but the fix was a capability that nobody had switched on yet. The search was looking in the wrong place. Catalogue-first search came from that day.',
+    ],
+  },
+  {
+    title: 'Kitchen and plate',
+    open: false,
+    paragraphs: [
+      'Raw exports and documents stay in the kitchen. Deterministic scripts cook the same dish every time. Agents only get the plate: an allowlisted, secret-scanned bundle served read-only over MCP. If it is not on the list, it is not served.',
+    ],
+  },
+];
+
+const canDo = [
+  'Resolve a setting through the override layers and say which level won.',
+  'Search capabilities no customer has used.',
+  'Draft a standard overview with unknowns left as visible blanks.',
+  'Route a missing answer to the right person and fold the reply back with who and when.',
+];
+
+const rules = [
+  'Zero guess: every fact carries a source and a confidence level. Unknowns go to a ledger.',
+  "A customer's own export beats a documented default for that customer's actual value.",
+  'For meaning, the newest sourced document wins; the old rulebook is a floor, not an authority.',
+  'Rare is not wrong: a deviation is a place to look first, never a defect.',
+  'Unprecedented is not unavailable: a capability no customer uses is still a valid answer.',
+  'Search before you file a gap.',
+];
+---
+
+<BaseLayout
+  title="System Model · Edi Rodin"
+  description="A model of how a software platform is configured for each customer, built from exports and documentation, served read-only to AI agents."
+>
+  <h1>System Model</h1>
+  <div class="lede">
+    <p>
+      A model of how a software platform is configured for each customer, built from exports and
+      documentation, served read-only to AI agents. It answers configuration questions with a source,
+      and says plainly when it does not know.
+    </p>
+  </div>
+  <StackChips />
+
+  <section class="section" aria-labelledby="story-heading">
+    <h2 id="story-heading">The story</h2>
+    <ol class="story">
+      {
+        chapters.map((chapter) => (
+          <li>
+            <details open={chapter.open}>
+              <summary>
+                <h3>{chapter.title}</h3>
+                <span class="mark" aria-hidden="true" />
+              </summary>
+              <div class="story-body">
+                {chapter.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+            </details>
+          </li>
+        ))
+      }
+      <li>
+        <details>
+          <summary>
+            <h3>What it can do</h3>
+            <span class="mark" aria-hidden="true" />
+          </summary>
+          <div class="story-body">
+            <ul class="points">
+              {canDo.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </details>
+      </li>
+    </ol>
+  </section>
+
+  <section class="stand" aria-labelledby="rules-heading">
+    <h2 id="rules-heading">The rules that came out of it</h2>
+    <ul class="points">
+      {rules.map((rule) => <li>{rule}</li>)}
+    </ul>
+  </section>
+
+  <section class="stand" aria-labelledby="limits-heading">
+    <h2 id="limits-heading">Honest limits</h2>
+    <p>
+      It is a snapshot, so it cannot say what changed last week. Behaviour coverage is thin outside a
+      few flows. Diagnosis is not solved. Mostly I have been its user so far.
+    </p>
+  </section>
+
+  <section class="stand" aria-labelledby="not-heading">
+    <h2 id="not-heading">What it is not</h2>
+    <p>
+      Not a continuous "company brain" that swallows chat and hopes. Not a repo-history compiler. The
+      hard part is upstream: authority, contradictions, provenance, and the interview loop that fills
+      what exports never contain.
+    </p>
+  </section>
+</BaseLayout>

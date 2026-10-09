@@ -1,24 +1,6 @@
 ---
-import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project) => ({
-    params: { slug: project.id },
-    props: { project },
-  }));
+// Earlier writeups stay in src/content/projects. This version publishes System Model only.
+export function getStaticPaths() {
+  return [];
 }
-
-const { project } = Astro.props;
-const { Content } = await render(project);
 ---
-
-<BaseLayout title={`${project.data.title} · machinedi`} description={project.data.summary}>
-  <p class="entry-status">{project.data.kind === 'lab-note' ? 'Personal lab note' : 'Project'}</p>
-  <h1>{project.data.title}</h1>
-  <p class="position">{project.data.status}</p>
-  <article class="prose">
-    <Content />
-  </article>
-</BaseLayout>

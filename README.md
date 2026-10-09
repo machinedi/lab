@@ -1,10 +1,12 @@
-# machinedi
+# Edi Rodin
 
-Personal site for **Edi Rodin**. Public brand mark: **machinedi**. A lab, not a company.
+Personal site for **Edi Rodin**. A lab, not a company.
 
-This is a static site (Astro + Markdown). Project writeups and notes are files you add, not a CMS.
+This is a static site (Astro + Markdown). The public pages are Home, System Model, Help, and Contact.
 
-Live URL after GitHub Pages is enabled: [https://machinedi.github.io/lab/](https://machinedi.github.io/lab/)
+Live URL, once the custom domain is attached: [https://edirodin.me/](https://edirodin.me/)
+
+Notes, the stack page, and earlier project writeups are still in the repo. They are not linked from the navigation or the home page. Older project URLs redirect to System Model or are not built. Notes and the stack page stay reachable by their old URLs, with `noindex`, and they are left out of the sitemap.
 
 ## Run locally
 
@@ -15,9 +17,9 @@ npm install
 npm run dev
 ```
 
-Astro serves the site with the GitHub Pages base path, so open:
+Astro serves the site at the domain root, so open:
 
-[http://localhost:4321/lab/](http://localhost:4321/lab/)
+[http://localhost:4321/](http://localhost:4321/)
 
 ```bash
 npm run build    # writes static files to dist/
@@ -67,23 +69,16 @@ Use `kind: lab-note` for household experiments that are not products for sale.
 
 ## GitHub Pages
 
-The workflow in `.github/workflows/deploy.yml` builds the Astro site on every push to `main` and deploys with GitHub Actions.
+The workflow in `.github/workflows/deploy.yml` builds the Astro site on every push to `main` and deploys with GitHub Actions. It does not publish from a branch.
 
-One-time setup in the GitHub UI:
+`public/CNAME` contains `edirodin.me`. The build copies it to the root of `dist/`, which is what the Actions deploy publishes. After this lands on `main`, confirm **Settings → Pages** shows the custom domain `edirodin.me`. The apex also needs DNS pointed at GitHub Pages.
 
-1. Repo **Settings → Pages**.
-2. Set **Source** to **GitHub Actions**.
+`astro.config.mjs` has:
 
-Until that is set, the workflow can build but GitHub will not publish the site. After it is set, the site is:
+- `site: 'https://edirodin.me'`
+- `base: '/'`
 
-`https://machinedi.github.io/lab/`
-
-`astro.config.mjs` already has:
-
-- `site: 'https://machinedi.github.io'`
-- `base: '/lab'`
-
-If you later move the site to a custom domain at the root, remove `base` and set `site` to that domain. Internal links already use `withBase()`, so they will follow the new base.
+Internal links use `withBase()`, so they follow that base. A single build cannot also be correct at `https://machinedi.github.io/lab/`, because those asset and page URLs are rooted at `/lab/`.
 
 ## Stack
 

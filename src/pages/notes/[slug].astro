@@ -15,7 +15,7 @@ const { Content } = await render(note);
 const isComing = note.data.status === 'coming';
 ---
 
-<BaseLayout title={`${note.data.title} · machinedi`} description={note.data.description}>
+<BaseLayout title={`${note.data.title} · Edi Rodin`} description={note.data.description} unlisted>
   <p class="entry-status">Note</p>
   <h1>{note.data.title}</h1>
   {

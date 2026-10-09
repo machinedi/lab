@@ -1,4 +1,7 @@
 ---
+import '@fontsource/source-serif-4/latin-400.css';
+import '@fontsource/source-serif-4/latin-400-italic.css';
+import '@fontsource/source-serif-4/latin-600.css';
 import '../styles/global.css';
 import PrimaryNav from '../components/PrimaryNav.astro';
 import { withBase } from '../lib/paths';
@@ -6,9 +9,10 @@ import { withBase } from '../lib/paths';
 interface Props {
   title: string;
   description: string;
+  unlisted?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, unlisted = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
@@ -20,15 +24,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content="Edi Rodin" />
-    <meta name="theme-color" content="#f7f6f2" />
+    {unlisted && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#f4efe6" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="machinedi notes"
-      href={withBase('/rss.xml')}
-    />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -43,12 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         <slot />
       </main>
       <footer class="site-footer">
-        <p>© Edi Rodin · machinedi · lab, not a company</p>
-        <p>
-          <a href="https://github.com/machinedi/lab">github.com/machinedi/lab</a>
-          <span aria-hidden="true"> · </span>
-          <a href={withBase('/contact/')}>Contact</a>
-        </p>
+        <p>A lab, not a company.</p>
       </footer>
     </div>
   </body>
