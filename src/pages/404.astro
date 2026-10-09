@@ -7,12 +7,11 @@ import { withBase } from '../lib/paths';
   <div class="not-found">
     <h1>Nothing here</h1>
     <p class="page-intro">That URL is not a page on this site.</p>
-    <p class="meta-links">
-      <a href={withBase('/')}>Home</a>
-      <a href={withBase('/projects/')}>Projects</a>
-      <a href={withBase('/notes/')}>Notes</a>
-      <a href={withBase('/help/')}>Help</a>
-      <a href={withBase('/contact/')}>Contact</a>
-    </p>
+    <ul class="link-row">
+      <li><a href={withBase('/')}>Home</a></li>
+      <li><a href={withBase('/system-model/')}>System Model</a></li>
+      <li><a href={withBase('/help/')}>Help</a></li>
+      <li><a href={withBase('/contact/')}>Contact</a></li>
+    </ul>
   </div>
 </BaseLayout>

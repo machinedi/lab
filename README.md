@@ -2,9 +2,11 @@
 
 Personal site for **Edi Rodin**. Public brand mark: **machinedi**. A lab, not a company.
 
-This is a static site (Astro + Markdown). Project writeups and notes are files you add, not a CMS.
+This is a static site (Astro + Markdown). The public pages are Home, System Model, Help, and Contact.
 
 Live URL after GitHub Pages is enabled: [https://machinedi.github.io/lab/](https://machinedi.github.io/lab/)
+
+Notes, the stack page, and earlier project writeups are still in the repo. They are not linked from the navigation or the home page. Older project URLs redirect to System Model or are not built. Notes and the stack page stay reachable by their old URLs, with `noindex`, and they are left out of the sitemap.
 
 ## Run locally
 

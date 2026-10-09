@@ -1,80 +1,75 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import StackChips from '../components/StackChips.astro';
 import { withBase } from '../lib/paths';
-
-const featured = (await getCollection('projects'))
-  .filter((project) => project.data.featured)
-  .sort((a, b) => a.data.order - b.data.order);
-
-const recentNotes = (await getCollection('notes'))
-  .filter((note) => note.data.status === 'published')
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
 ---
 
 <BaseLayout
   title="Edi Rodin · machinedi"
-  description="Edi Rodin documents systems and hard logic, and helps small and mid-size businesses with simple, reliable automations."
+  description="I build systems that turn messy organisational knowledge into answers agents can trust."
 >
-  <h1>Edi Rodin</h1>
-  <p class="position">Documents systems and hard logic.</p>
+  <header class="identity">
+    <h1>Edi Rodin</h1>
+    <p class="role">
+      I build systems that turn messy organisational knowledge into answers agents can trust.
+    </p>
+    <p class="place">Israel</p>
+    <ul class="link-row">
+      <li><a href="https://github.com/machinedi" rel="me">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/edi-rodin" rel="me">LinkedIn</a></li>
+      <li><a href="mailto:edi.rodin@gmail.com">Email</a></li>
+    </ul>
+  </header>
 
-  <div class="lede">
+  <div class="intro">
     <p>
-      I write down the systems I build and the logical problems they had to survive. I also help
-      small and mid-size businesses with simple, reliable automations.
+      I started by listing the work I do every day so I could automate it. Sorting email looked easy.
+      Answering the configuration questions inside that email did not. That is where this project began.
+    </p>
+    <p>
+      I write here about how my projects are built: the logic, the dead ends, and the rules that made
+      them hold. When a small business needs a simple, reliable automation, I can help with that too.
     </p>
   </div>
 
-  <div class="section-head">
-    <h2>Projects</h2>
-    <a href={withBase('/projects/')}>All projects</a>
-  </div>
-  <ul class="entry-list">
-    {
-      featured.map((project) => (
-        <li>
-          <p class="entry-status">{project.data.status}</p>
-          <a class="title" href={withBase(`/projects/${project.id}/`)}>
-            {project.data.title}
-          </a>
-          <p>{project.data.summary}</p>
-        </li>
-      ))
-    }
-  </ul>
+  <section class="section" aria-labelledby="project-heading">
+    <h2 id="project-heading">Project</h2>
+    <article class="project-card">
+      <h3>
+        <a href={withBase('/system-model/')}>System Model</a>
+      </h3>
+      <p>
+        A model of how a software platform is configured for each customer, built from exports and
+        documentation, served read-only to AI agents. It answers configuration questions with a
+        source, and says plainly when it does not know.
+      </p>
+      <StackChips />
+    </article>
+  </section>
 
-  {
-    recentNotes.length > 0 && (
-      <>
-        <div class="section-head">
-          <h2>Notes</h2>
-          <a href={withBase('/notes/')}>All notes</a>
-        </div>
-        <ul class="entry-list">
-          {recentNotes.map((note) => (
-            <li>
-              <p class="note-status">
-                {note.data.pubDate.toLocaleDateString('en-GB', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </p>
-              <a class="title" href={withBase(`/notes/${note.id}/`)}>
-                {note.data.title}
-              </a>
-              <p>{note.data.description}</p>
-            </li>
-          ))}
-        </ul>
-      </>
-    )
-  }
+  <section class="section" aria-labelledby="principles-heading">
+    <h2 id="principles-heading">Principles</h2>
+    <ul class="quotes">
+      <li>
+        <blockquote>
+          <p>a rule nobody can retrieve is not binding</p>
+        </blockquote>
+      </li>
+      <li>
+        <blockquote>
+          <p>A wall of questions is how a queue gets ignored</p>
+        </blockquote>
+      </li>
+      <li>
+        <blockquote>
+          <p>Deleting or masking a file does not un-leak it.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </section>
 
-  <p class="help-link">
-    If you run a small or mid-size business and need a simple process or automation, see
-    <a href={withBase('/help/')}>Help</a>.
+  <p class="help-line">
+    Need a simple, efficient automation for a small business process?
+    <a href={withBase('/help/')}>Write to me</a>. Plain scope, no transformation pitch.
   </p>
 </BaseLayout>

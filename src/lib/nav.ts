@@ -1,9 +1,7 @@
 export const primaryNav = [
-  { href: '/', label: 'Home', match: '/', exact: true },
-  { href: '/projects/', label: 'Projects', match: '/projects' },
-  { href: '/notes/', label: 'Notes', match: '/notes' },
+  { href: '/', label: 'Home', match: '/' },
+  { href: '/system-model/', label: 'System Model', match: '/system-model' },
   { href: '/help/', label: 'Help', match: '/help' },
-  { href: '/stack/', label: 'Stack', match: '/stack' },
   { href: '/contact/', label: 'Contact', match: '/contact' },
 ] as const;
 
