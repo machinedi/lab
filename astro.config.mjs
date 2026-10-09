@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://machinedi.github.io',
-  base: '/lab',
+  site: 'https://edirodin.me',
+  base: '/',
   trailingSlash: 'always',
   integrations: [
     sitemap({

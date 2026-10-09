@@ -6,7 +6,10 @@ const current = currentPath(Astro.url.pathname, import.meta.env.BASE_URL);
 ---
 
 <header class="site-header">
-  <a class="brand" href={withBase('/')}>machinedi</a>
+  <a class="brand" href={withBase('/')}>
+    <span class="brand-name">Edi Rodin</span>
+    <span class="brand-note">notes from the lab</span>
+  </a>
   <nav class="nav" aria-label="Primary">
     <ul>
       {
