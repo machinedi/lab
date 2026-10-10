@@ -1,6 +1,7 @@
 export const primaryNav = [
   { href: '/', label: 'Home', match: '/' },
-  { href: '/system-model/', label: 'System Model', match: '/system-model' },
+  { href: '/knowledge/', label: 'Knowledge', match: '/knowledge' },
+  { href: '/agent-building/', label: 'Agent Building', match: '/agent-building' },
   { href: '/help/', label: 'Help', match: '/help' },
   { href: '/contact/', label: 'Contact', match: '/contact' },
 ] as const;

@@ -300,6 +300,86 @@ h3 {
   margin: 0;
 }
 
+.topic-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3.35rem;
+}
+
+.topic-card h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.topic-card h2 a,
+.topic-card .entry-title a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.topic-card h2 a:hover,
+.topic-card .entry-title a:hover {
+  text-decoration: underline;
+}
+
+.topic-card .entry-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.topic-card .entry-line {
+  margin: 0.45rem 0 0;
+}
+
+.knowledge-entry > h2 {
+  margin: 1.35rem 0 0.7rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.post-kicker {
+  margin: 0 0 0.75rem;
+}
+
+.post-kicker a {
+  text-decoration: none;
+}
+
+.post-kicker a:hover {
+  text-decoration: underline;
+}
+
+.post-meta {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.post p {
+  margin: 1.05rem 0 0;
+}
+
+.post h3 {
+  margin: 2.15rem 0 0.15rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.coming-next {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.coming-next li {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -616,6 +696,10 @@ h3 {
 
   .project-card {
     padding: 1.1rem 1.05rem 1.15rem;
+  }
+
+  .knowledge-entry > h2 {
+    font-size: 1.5rem;
   }
 }
 

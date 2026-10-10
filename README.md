@@ -2,11 +2,11 @@
 
 Personal site for **Edi Rodin**. A lab, not a company.
 
-This is a static site (Astro + Markdown). The public pages are Home, System Model, Help, and Contact.
+This is a static site (Astro + Markdown). The public pages are Home, Knowledge, Agent Building, Help, and Contact.
 
-Live URL, once the custom domain is attached: [https://edirodin.me/](https://edirodin.me/)
+Live URL: [https://edirodin.me/](https://edirodin.me/)
 
-Notes, the stack page, and earlier project writeups are still in the repo. They are not linked from the navigation or the home page. Older project URLs redirect to System Model or are not built. Notes and the stack page stay reachable by their old URLs, with `noindex`, and they are left out of the sitemap.
+Notes, the stack page, and earlier project writeups are still in the repo. They are not linked from the navigation or the home page. `/system-model/` redirects to Knowledge. Older project URLs redirect there too, or are not built. Notes and the stack page stay reachable by their old URLs, with `noindex`, and they are left out of the sitemap.
 
 ## Run locally
 
@@ -47,6 +47,25 @@ listing: full       # full | abstract | title
 - `status: coming` and `listing: title` lists the title only on `/notes`.
 
 Write the note in Markdown below the front matter. Do not use em dashes.
+
+## Add a post
+
+1. Create `src/content/posts/my-post.md`. The filename is the slug.
+2. Front matter:
+
+```yaml
+---
+title: The title
+dek: One sentence under the title.
+date: 2026-10-10
+readingTime: "~4 min"
+topic: agent-building   # or knowledge
+---
+```
+
+`topic: agent-building` publishes at `/agent-building/my-post/` and on the Agent Building page. `topic: knowledge` publishes at `/knowledge/my-post/` and is listed on Knowledge after System Model. Write the body in Markdown. Use `###` for section headings. Do not use em dashes.
+
+The "Coming next" lines on Agent Building are plain text in `src/pages/agent-building/index.astro`. They are not links. Remove a line from that list when its post is published.
 
 ## Add a project
 
