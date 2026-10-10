@@ -15,6 +15,7 @@ export default defineConfig({
     }),
   ],
   markdown: {
+    smartypants: false,
     shikiConfig: {
       theme: 'min-light',
     },
