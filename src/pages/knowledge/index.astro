@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SystemModelEntry from '../../components/SystemModelEntry.astro';
+import { withBase } from '../../lib/paths';
+
+const later = (await getCollection('posts', ({ data }) => data.topic === 'knowledge')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Knowledge · Edi Rodin"
+  description="A model of how a software platform is configured for each customer, built from exports and documentation, served read-only to AI agents."
+>
+  <h1>Knowledge</h1>
+  <SystemModelEntry />
+  {
+    later.length > 0 && (
+      <ul class="entry-list">
+        {later.map((post) => (
+          <li>
+            <a class="title" href={withBase(`/knowledge/${post.id}/`)}>
+              {post.data.title}
+            </a>
+            <p>{post.data.dek}</p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</BaseLayout>

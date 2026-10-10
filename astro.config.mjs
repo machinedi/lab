@@ -8,10 +8,14 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) =>
-        !page.includes('/notes') && !page.includes('/stack') && !page.includes('/projects'),
+        !page.includes('/notes') &&
+        !page.includes('/stack') &&
+        !page.includes('/projects') &&
+        !page.includes('/system-model'),
     }),
   ],
   markdown: {
+    smartypants: false,
     shikiConfig: {
       theme: 'min-light',
     },

@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/paths';
+
+const published = (await getCollection('posts', ({ data }) => data.topic === 'agent-building')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const comingNext = [
+  'The decision as the only way out',
+  'Memory and the nightly dreaming',
+  'Routines and when to kill them',
+  'When an email tries to give the agent instructions',
+];
+---
+
+<BaseLayout
+  title="Agent Building · Edi Rodin"
+  description="I build agents for my own work, and I write down how they are made."
+>
+  <h1>Agent Building</h1>
+  <div class="page-intro">
+    <p>
+      I build agents for my own work, and I write down how they are made: how an agent is defined,
+      what it is allowed to touch, how it remembers, how it decides when to speak up, and how it earns
+      trust. The examples come from one desktop agent I use every day to turn mail, meetings and tasks
+      into decisions.
+    </p>
+  </div>
+
+  <ul class="entry-list">
+    {
+      published.map((post) => (
+        <li>
+          <a class="title" href={withBase(`/agent-building/${post.id}/`)}>
+            {post.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <section class="section" aria-labelledby="coming-next-heading">
+    <h2 id="coming-next-heading">Coming next</h2>
+    <ul class="coming-next">
+      {comingNext.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+</BaseLayout>

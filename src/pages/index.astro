@@ -1,7 +1,27 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import StackChips from '../components/StackChips.astro';
 import { withBase } from '../lib/paths';
+
+const latestAgent = (await getCollection('posts', ({ data }) => data.topic === 'agent-building')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)[0];
+
+const latestKnowledge = (await getCollection('posts', ({ data }) => data.topic === 'knowledge')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)[0];
+
+const knowledgeEntry = latestKnowledge
+  ? {
+      title: latestKnowledge.data.title,
+      href: withBase(`/knowledge/${latestKnowledge.id}/`),
+      line: latestKnowledge.data.dek,
+    }
+  : {
+      title: 'System Model',
+      href: withBase('/knowledge/#system-model'),
+      line: 'A model of how a software platform is configured for each customer, built from exports and documentation, served read-only to AI agents.',
+    };
 ---
 
 <BaseLayout
@@ -32,20 +52,20 @@ import { withBase } from '../lib/paths';
     </p>
   </div>
 
-  <section class="section" aria-labelledby="project-heading">
-    <h2 id="project-heading">Project</h2>
-    <article class="project-card">
-      <h3>
-        <a href={withBase('/system-model/')}>System Model</a>
-      </h3>
-      <p>
-        A model of how a software platform is configured for each customer, built from exports and
-        documentation, served read-only to AI agents. It answers configuration questions with a
-        source, and says plainly when it does not know.
-      </p>
-      <StackChips />
+  <div class="topic-stack">
+    <article class="project-card topic-card">
+      <h2><a href={withBase('/knowledge/')}>Knowledge</a></h2>
+      <p class="entry-title"><a href={knowledgeEntry.href}>{knowledgeEntry.title}</a></p>
+      <p class="entry-line">{knowledgeEntry.line}</p>
     </article>
-  </section>
+    <article class="project-card topic-card">
+      <h2><a href={withBase('/agent-building/')}>Agent Building</a></h2>
+      <p class="entry-title">
+        <a href={withBase(`/agent-building/${latestAgent.id}/`)}>{latestAgent.data.title}</a>
+      </p>
+      <p class="entry-line">{latestAgent.data.dek}</p>
+    </article>
+  </div>
 
   <section class="section" aria-labelledby="principles-heading">
     <h2 id="principles-heading">Principles</h2>
