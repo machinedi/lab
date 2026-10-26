@@ -2,15 +2,22 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/paths';
-import { topics } from '../lib/topics';
+import { topicOrder, topics, type TopicKey } from '../lib/topics';
 
-const latestAgent = (await getCollection('posts', ({ data }) => data.topic === 'agent-building')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-)[0];
+const posts = await getCollection('posts');
 
-const latestKnowledge = (await getCollection('posts', ({ data }) => data.topic === 'knowledge')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-)[0];
+function latestPost(topic: TopicKey) {
+  return posts
+    .filter((post) => post.data.topic === topic)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())[0];
+}
+
+const latestAgent = latestPost('agent-building');
+const latestKnowledge = latestPost('knowledge');
+
+if (!latestAgent) {
+  throw new Error('Agent Building has no posts.');
+}
 
 const knowledgeTopic = topics.knowledge;
 const agentTopic = topics['agent-building'];
@@ -27,17 +34,44 @@ const knowledgeEntry = latestKnowledge
       href: withBase(knowledgeFallback?.href ?? knowledgeTopic.href),
       line: knowledgeFallback?.summary ?? knowledgeTopic.description,
     };
+
+const readingOrder = [
+  'one-thing-led-to-another',
+  'building-a-work-partner',
+  'inside-the-app-part-1',
+  'inside-the-app-part-2',
+] as const;
+
+const reading = readingOrder.map((id) => {
+  const post = posts.find((entry) => entry.id === id);
+  if (!post) {
+    throw new Error(`Home reading list is missing post ${id}.`);
+  }
+  return {
+    title: post.data.title,
+    href: withBase(`/${post.data.topic}/${post.id}/`),
+    dek: post.data.dek,
+  };
+});
+
+const model = knowledgeTopic.pinned;
+if (!model) {
+  throw new Error('Knowledge is missing its pinned model page.');
+}
+
+reading.push({
+  title: model.title,
+  href: withBase(model.href),
+  dek: model.summary,
+});
+
+const description = "I build smart systems I work with every day, and I write down how they're made.";
 ---
 
-<BaseLayout
-  title="Edi Rodin"
-  description="I build systems that turn messy organisational knowledge into answers agents can trust."
->
+<BaseLayout title="Edi Rodin" description={description}>
   <header class="identity">
     <h1>Edi Rodin</h1>
-    <p class="role">
-      I build systems that turn messy organisational knowledge into answers agents can trust.
-    </p>
+    <p class="role">{description}</p>
     <p class="place">Israel</p>
     <ul class="link-row">
       <li><a href="https://github.com/machinedi" rel="me">GitHub</a></li>
@@ -48,53 +82,154 @@ const knowledgeEntry = latestKnowledge
 
   <div class="intro">
     <p>
-      I started by listing the work I do every day so I could automate it. Sorting email looked easy.
-      Answering the configuration questions inside that email did not. That is where this project began.
+      Hi: I work at an ordinary high-tech company that runs lean. The work doesn't shrink when that
+      happens, it spreads: faults to trace to a root cause, specs for the product team, parts between
+      suppliers, trainings, demos and documentation, all in the same day.
     </p>
     <p>
-      I write here about how my projects are built: the logic, the dead ends, and the rules that made
-      them hold. When a small business needs a simple, reliable automation, I can help with that too.
+      I'd been using personal agents at home for a long time, and at some point I wanted the same kind
+      of help at work. So I wrote my day down, step by step, and started closing one loop at a time.
+      This site is the notebook from that: what I built, what broke, what I changed, and what I'm still
+      not sure about.
     </p>
   </div>
 
-  <div class="topic-stack">
-    <article class="project-card topic-card">
-      <h2><a href={withBase(knowledgeTopic.href)}>{knowledgeTopic.label}</a></h2>
-      <p class="entry-title"><a href={knowledgeEntry.href}>{knowledgeEntry.title}</a></p>
-      <p class="entry-line">{knowledgeEntry.line}</p>
-    </article>
-    <article class="project-card topic-card">
-      <h2><a href={withBase(agentTopic.href)}>{agentTopic.label}</a></h2>
-      <p class="entry-title">
-        <a href={withBase(`/${agentTopic.key}/${latestAgent.id}/`)}>{latestAgent.data.title}</a>
+  <section class="section" aria-labelledby="building-heading">
+    <h2 id="building-heading">What I'm building now</h2>
+    <div class="building">
+      <p>
+        <strong>Tony, a personal operating system for my work.</strong> It runs on my laptop and catches
+        signals from every direction: mail, chat, meetings, and the routines it runs on its own. It
+        sorts them into the tasks and projects that are actually moving, and keeps a memory with a
+        source and a date on every fact. Built into it is an agent I can talk to, one that picks up
+        tasks from whatever came in and carries them out. Whatever needs judgment comes back to me as a
+        decision, and nothing goes out in my name. I write about it from a systems angle: the parts,
+        the bottlenecks, and how my decisions, its memory and its routines shape each other.
       </p>
-      <p class="entry-line">{latestAgent.data.dek}</p>
-    </article>
-  </div>
+      <p>
+        <strong><a href={withBase(model.href)}>The Context Layer Model</a>.</strong> A model of how a
+        software platform is configured for each customer, built from exports and documentation and
+        served read-only to AI agents. It answers configuration questions with a source, and says
+        plainly when it doesn't know.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="how-heading">
+    <h2 id="how-heading">How I work</h2>
+    <ul class="points how-i-work">
+      <li>
+        <strong>I start from the day, not the tool.</strong> I write down what I actually do, step by
+        step, and ask of each step whether it needs me or only someone who remembers.
+      </li>
+      <li>
+        <strong>I look at it as a system.</strong> Parts, bottlenecks, and what each piece feeds. Most
+        of my changes start from one bottleneck.
+      </li>
+      <li>
+        <strong>I find the root cause and write it down,</strong> so the next person doesn't have to
+        rediscover it.
+      </li>
+      <li>
+        <strong>Approved is not done.</strong> Everything I approve is checked against what really ran.
+      </li>
+      <li>
+        <strong>No guessing.</strong> Every fact carries a source. If it isn't known, the answer says
+        so.
+      </li>
+      <li>
+        <strong>The leanest way that I can still see.</strong> If a step doesn't need a model, it
+        doesn't call one.
+      </li>
+      <li>
+        <strong>I explain it to people.</strong> Trainings, demos, documentation, and lately short
+        sessions with colleagues on how they work.
+      </li>
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="reading-heading">
+    <h2 id="reading-heading">Where to start reading</h2>
+    <ol class="reading">
+      {
+        reading.map((item) => (
+          <li>
+            <a href={item.href}>{item.title}</a>
+            <p>{item.dek}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="reading-more">
+      {
+        topicOrder.map((key, index) => (
+          <span class="reading-more-item">
+            {index > 0 && (
+              <span class="sep" aria-hidden="true">
+                ·
+              </span>
+            )}
+            <a href={withBase(topics[key].href)}>All in {topics[key].label} →</a>
+          </span>
+        ))
+      }
+    </p>
+  </section>
+
+  <section class="section" aria-labelledby="latest-heading">
+    <h2 id="latest-heading">Latest</h2>
+    <div class="topic-stack">
+      <article class="project-card topic-card">
+        <h2><a href={withBase(knowledgeTopic.href)}>{knowledgeTopic.label}</a></h2>
+        <p class="entry-title"><a href={knowledgeEntry.href}>{knowledgeEntry.title}</a></p>
+        <p class="entry-line">{knowledgeEntry.line}</p>
+      </article>
+      <article class="project-card topic-card">
+        <h2><a href={withBase(agentTopic.href)}>{agentTopic.label}</a></h2>
+        <p class="entry-title">
+          <a href={withBase(`/${agentTopic.key}/${latestAgent.id}/`)}>{latestAgent.data.title}</a>
+        </p>
+        <p class="entry-line">{latestAgent.data.dek}</p>
+      </article>
+    </div>
+  </section>
 
   <section class="section" aria-labelledby="principles-heading">
     <h2 id="principles-heading">Principles</h2>
     <ul class="quotes">
       <li>
         <blockquote>
-          <p>a rule nobody can retrieve is not binding</p>
+          <p>Approved is not done.</p>
         </blockquote>
       </li>
       <li>
         <blockquote>
-          <p>A wall of questions is how a queue gets ignored</p>
+          <p>If it is not on the list, it is not served.</p>
         </blockquote>
       </li>
       <li>
         <blockquote>
-          <p>Deleting or masking a file does not un-leak it.</p>
+          <p>Rare is not wrong.</p>
+        </blockquote>
+      </li>
+      <li>
+        <blockquote>
+          <p>A wall of questions is how a queue gets ignored.</p>
         </blockquote>
       </li>
     </ul>
   </section>
 
   <p class="help-line">
-    Need a simple, efficient automation for a small business process?
+    Need a simple, reliable automation for a small business process?
     <a href={withBase('/help/')}>Write to me</a>. Plain scope, no transformation pitch.
+  </p>
+  <p class="contact-line">
+    Contact:
+    <a href="mailto:edi.rodin@gmail.com">edi.rodin@gmail.com</a>
+    ·
+    <a href="https://github.com/machinedi" rel="me">GitHub</a>
+    ·
+    <a href="https://www.linkedin.com/in/edi-rodin" rel="me">LinkedIn</a>
   </p>
 </BaseLayout>

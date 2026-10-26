@@ -680,6 +680,95 @@ h3 {
   color: var(--ink-soft);
 }
 
+.building p {
+  margin: 0;
+}
+
+.building p + p {
+  margin-top: 1.15rem;
+}
+
+.building strong,
+.how-i-work strong {
+  font-weight: 600;
+}
+
+.building a {
+  color: var(--accent);
+}
+
+.how-i-work {
+  margin-top: 0.15rem;
+}
+
+.reading {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: reading;
+}
+
+.reading > li {
+  position: relative;
+  padding: 0.9rem 0 0.95rem 1.8rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.reading > li::before {
+  counter-increment: reading;
+  content: counter(reading) ".";
+  position: absolute;
+  left: 0;
+  top: 0.95rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.reading a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reading a:hover {
+  text-decoration: underline;
+}
+
+.reading p {
+  margin: 0.3rem 0 0;
+  color: var(--ink-soft);
+}
+
+.reading-more {
+  margin: 1.15rem 0 0;
+}
+
+.reading-more-item {
+  display: inline;
+}
+
+.reading-more a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reading-more a:hover {
+  text-decoration: underline;
+}
+
+.reading-more .sep {
+  margin: 0 0.55rem;
+  color: var(--muted);
+}
+
+.section .topic-stack {
+  margin-top: 0;
+}
+
+.contact-line {
+  margin: 0.85rem 0 0;
+  color: var(--ink-soft);
+}
+
 .page-intro {
   margin-bottom: 1.4rem;
 }
