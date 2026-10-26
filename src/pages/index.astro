@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/paths';
+import { topics } from '../lib/topics';
 
 const latestAgent = (await getCollection('posts', ({ data }) => data.topic === 'agent-building')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
@@ -11,16 +12,20 @@ const latestKnowledge = (await getCollection('posts', ({ data }) => data.topic =
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 )[0];
 
+const knowledgeTopic = topics.knowledge;
+const agentTopic = topics['agent-building'];
+const knowledgeFallback = knowledgeTopic.pinned;
+
 const knowledgeEntry = latestKnowledge
   ? {
       title: latestKnowledge.data.title,
-      href: withBase(`/knowledge/${latestKnowledge.id}/`),
+      href: withBase(`/${knowledgeTopic.key}/${latestKnowledge.id}/`),
       line: latestKnowledge.data.dek,
     }
   : {
-      title: 'System Model',
-      href: withBase('/knowledge/#system-model'),
-      line: 'A model of how a software platform is configured for each customer, built from exports and documentation, served read-only to AI agents.',
+      title: knowledgeFallback?.title ?? knowledgeTopic.label,
+      href: withBase(knowledgeFallback?.href ?? knowledgeTopic.href),
+      line: knowledgeFallback?.summary ?? knowledgeTopic.description,
     };
 ---
 
@@ -54,14 +59,14 @@ const knowledgeEntry = latestKnowledge
 
   <div class="topic-stack">
     <article class="project-card topic-card">
-      <h2><a href={withBase('/knowledge/')}>Knowledge</a></h2>
+      <h2><a href={withBase(knowledgeTopic.href)}>{knowledgeTopic.label}</a></h2>
       <p class="entry-title"><a href={knowledgeEntry.href}>{knowledgeEntry.title}</a></p>
       <p class="entry-line">{knowledgeEntry.line}</p>
     </article>
     <article class="project-card topic-card">
-      <h2><a href={withBase('/agent-building/')}>Agent Building</a></h2>
+      <h2><a href={withBase(agentTopic.href)}>{agentTopic.label}</a></h2>
       <p class="entry-title">
-        <a href={withBase(`/agent-building/${latestAgent.id}/`)}>{latestAgent.data.title}</a>
+        <a href={withBase(`/${agentTopic.key}/${latestAgent.id}/`)}>{latestAgent.data.title}</a>
       </p>
       <p class="entry-line">{latestAgent.data.dek}</p>
     </article>

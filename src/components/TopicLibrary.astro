@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getTopic, type TopicKey } from '../lib/topics';
+import { withBase } from '../lib/paths';
+
+interface Props {
+  topic: TopicKey;
+}
+
+const { topic: topicKey } = Astro.props;
+const topic = getTopic(topicKey);
+if (!topic) {
+  throw new Error(`Unknown topic: ${topicKey}`);
+}
+
+const posts = (await getCollection('posts', ({ data }) => data.topic === topicKey)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const dateFormat: Intl.DateTimeFormatOptions = {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+};
+---
+
+<BaseLayout title={`${topic.label} · Edi Rodin`} description={topic.description}>
+  <h1>{topic.label}</h1>
+  <div class="page-intro">
+    <p>{topic.intro}</p>
+  </div>
+
+  <ul class="library">
+    {
+      topic.pinned && (
+        <li>
+          <article class="project-card post-card">
+            <p class="entry-status">{topic.pinned.kicker}</p>
+            <h2>
+              <a href={withBase(topic.pinned.href)}>{topic.pinned.title}</a>
+            </h2>
+            <p>{topic.pinned.summary}</p>
+          </article>
+        </li>
+      )
+    }
+    {
+      posts.map((post) => (
+        <li>
+          <article class="project-card post-card">
+            <h2>
+              <a href={withBase(`/${topicKey}/${post.id}/`)}>{post.data.title}</a>
+            </h2>
+            <p>{post.data.dek}</p>
+            <p class="post-meta">
+              <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                {post.data.date.toLocaleDateString('en-GB', dateFormat)}
+              </time>
+              <span aria-hidden="true"> · </span>
+              <span>{post.data.readingTime}</span>
+            </p>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    topic.comingNext.length > 0 && (
+      <section class="section" aria-labelledby={`${topicKey}-coming-next`}>
+        <h2 id={`${topicKey}-coming-next`}>Coming next</h2>
+        <ul class="coming-next">
+          {topic.comingNext.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    topic.key === 'knowledge' && topic.pinned && (
+      <script is:inline define:vars={{ target: withBase(topic.pinned.href) }}>
+        if (location.hash === '#system-model') location.replace(target);
+      </script>
+    )
+  }
+</BaseLayout>

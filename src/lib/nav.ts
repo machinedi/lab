@@ -1,10 +1,23 @@
-export const primaryNav = [
+import { topicOrder, topics, type TopicKey } from './topics';
+
+export interface NavItem {
+  href: string;
+  label: string;
+  match: string;
+  topic?: TopicKey;
+}
+
+export const primaryNav: NavItem[] = [
   { href: '/', label: 'Home', match: '/' },
-  { href: '/knowledge/', label: 'Knowledge', match: '/knowledge' },
-  { href: '/agent-building/', label: 'Agent Building', match: '/agent-building' },
+  ...topicOrder.map((key) => ({
+    href: topics[key].href,
+    label: topics[key].label,
+    match: topics[key].href.replace(/\/$/, ''),
+    topic: key,
+  })),
   { href: '/help/', label: 'Help', match: '/help' },
   { href: '/contact/', label: 'Contact', match: '/contact' },
-] as const;
+];
 
 export function currentPath(pathname: string, baseUrl: string): string {
   const base = baseUrl.replace(/\/$/, '');

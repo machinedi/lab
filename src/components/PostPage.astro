@@ -2,14 +2,16 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/paths';
+import { getTopic } from '../lib/topics';
 
 interface Props {
   post: CollectionEntry<'posts'>;
 }
 
 const { post } = Astro.props;
-const topicLabel = post.data.topic === 'knowledge' ? 'Knowledge' : 'Agent Building';
-const topicHref = withBase(`/${post.data.topic}/`);
+const topic = getTopic(post.data.topic);
+const topicLabel = topic?.label ?? post.data.topic;
+const topicHref = withBase(topic?.href ?? `/${post.data.topic}/`);
 const published = post.data.date.toLocaleDateString('en-GB', {
   day: 'numeric',
   month: 'short',
