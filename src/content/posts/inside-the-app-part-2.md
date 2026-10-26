@@ -1,7 +1,7 @@
 ---
 title: "Inside the app, part 2: what runs without me"
 dek: What I can actually turn and tune in my work agent, continued, with routines, skills, the log, and the fixed lines around them.
-date: 2026-10-26
+date: 2026-10-22
 readingTime: "~7 min"
 topic: agent-building
 ---

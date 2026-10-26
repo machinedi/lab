@@ -1,7 +1,7 @@
 ---
 title: "Inside the app, part 1: where the day goes in"
 dek: What I can actually turn and tune in my work agent, starting with how chat, meetings and mail become tasks, projects and memory.
-date: 2026-10-26
+date: 2026-10-22
 readingTime: "~10 min"
 topic: agent-building
 ---
