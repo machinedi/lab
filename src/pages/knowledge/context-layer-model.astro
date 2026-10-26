@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContextLayerModel from '../../components/ContextLayerModel.astro';
+import { topics } from '../../lib/topics';
+import { withBase } from '../../lib/paths';
+
+const knowledge = topics.knowledge;
+const model = knowledge.pinned;
+if (!model) {
+  throw new Error('Knowledge is missing its pinned model page.');
+}
+---
+
+<BaseLayout title={`${model.title} · Edi Rodin`} description={model.summary}>
+  <p class="post-kicker">
+    <a href={withBase(knowledge.href)}>{knowledge.label}</a>
+  </p>
+  <ContextLayerModel />
+</BaseLayout>

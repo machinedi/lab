@@ -6,7 +6,7 @@ This is a static site (Astro + Markdown). The public pages are Home, Knowledge, 
 
 Live URL: [https://edirodin.me/](https://edirodin.me/)
 
-Notes, the stack page, and earlier project writeups are still in the repo. They are not linked from the navigation or the home page. `/system-model/` redirects to Knowledge. Older project URLs redirect there too, or are not built. Notes and the stack page stay reachable by their old URLs, with `noindex`, and they are left out of the sitemap.
+Notes, the stack page, and earlier project writeups are still in the repo. They are not linked from the navigation or the home page. `/system-model/` and `/knowledge/system-model/` redirect to the Context Layer Model page. Older project URLs redirect to Knowledge, or are not built. Notes and the stack page stay reachable by their old URLs, with `noindex`, and they are left out of the sitemap.
 
 ## Run locally
 
@@ -63,9 +63,9 @@ topic: agent-building   # or knowledge
 ---
 ```
 
-`topic: agent-building` publishes at `/agent-building/my-post/` and on the Agent Building page. `topic: knowledge` publishes at `/knowledge/my-post/` and is listed on Knowledge after System Model. Write the body in Markdown. Use `###` for section headings. Do not use em dashes.
+`topic: agent-building` publishes at `/agent-building/my-post/` and on the Agent Building page. `topic: knowledge` publishes at `/knowledge/my-post/` and is listed on the Knowledge page. Topic names live in `src/lib/topics.ts`. Write the body in Markdown. Use `###` for section headings. Do not use em dashes.
 
-The "Coming next" lines on Agent Building are plain text in `src/pages/agent-building/index.astro`. They are not links. Remove a line from that list when its post is published.
+The "Coming next" lines on a topic page are plain text in `src/lib/topics.ts`. They are not links, and they are not shown in the nav. Remove a line from that list when its post is published.
 
 ## Add a project
 
