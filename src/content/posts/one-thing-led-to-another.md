@@ -11,7 +11,7 @@ topic: knowledge
 <figure class="strip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 250" role="img" aria-labelledby="viz-one-day" font-family="Source Serif 4, Iowan Old Style, Palatino, Georgia, serif"><title id="viz-one-day">Four kinds of work interleaved across one day: a fault and its fix spec, hardware parts between suppliers, trainings and demos, and documentation.</title><text x="20" y="22" font-size="13" fill="#5c554c" letter-spacing="0.06em">ONE DAY, MORNING TO EVENING</text><text x="20" y="46" font-size="14.5" fill="#2c261f">Fault in an interface, then the fix spec</text><line x1="20" y1="60" x2="652" y2="60" stroke="#d3c4b0" stroke-width="1"/><rect x="20.0" y="54" width="88.5" height="12" rx="2" fill="#7a4032" fill-opacity="0.85"/><rect x="209.6" y="54" width="75.8" height="12" rx="2" fill="#7a4032" fill-opacity="0.85"/><rect x="411.8" y="54" width="50.6" height="12" rx="2" fill="#7a4032" fill-opacity="0.85"/><rect x="563.5" y="54" width="63.2" height="12" rx="2" fill="#7a4032" fill-opacity="0.85"/><text x="20" y="92" font-size="14.5" fill="#2c261f">Hardware parts between suppliers</text><line x1="20" y1="106" x2="652" y2="106" stroke="#d3c4b0" stroke-width="1"/><rect x="108.5" y="100" width="37.9" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><rect x="285.4" y="100" width="31.6" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><rect x="367.6" y="100" width="25.3" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><rect x="513.0" y="100" width="25.3" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><rect x="626.7" y="100" width="25.3" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><text x="20" y="138" font-size="14.5" fill="#2c261f">Trainings and demos for customers</text><line x1="20" y1="152" x2="652" y2="152" stroke="#d3c4b0" stroke-width="1"/><rect x="146.4" y="146" width="63.2" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><rect x="462.4" y="146" width="50.6" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><text x="20" y="184" font-size="14.5" fill="#2c261f">New docs, and old ones that drifted</text><line x1="20" y1="198" x2="652" y2="198" stroke="#d3c4b0" stroke-width="1"/><rect x="317.0" y="192" width="50.6" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><rect x="538.2" y="192" width="25.3" height="12" rx="2" fill="#7a4032" fill-opacity="0.55"/><text x="20" y="240" font-size="13" fill="#5c554c" font-style="italic">Each block is a stretch of attention. Most of the day was spent switching.</text></svg></figure>
 </div>
 
-This is the longer story behind the other posts here. I work an ordinary high-tech job at a software startup that has been going through a hard time with money.
+This is the longer story behind the other posts here. I work an ordinary high-tech job at a software company that, like many lately, runs lean.
 
 When that happens, the work doesn't shrink. It spreads. Fewer people hold more threads, and a lot of them ended up with me.
 
@@ -104,15 +104,3 @@ The first change was small. I stopped checking whether something had fallen thro
 With the time that came back, I started booking focus time with myself. Deeper work, and research into things that were already built, just to see if they could be better. Some were fine as they were. Some weren't.
 
 A few colleagues asked how I work, so I sat with them for short sessions on their own methods. Explaining it showed me which parts of my setup are about me, and which might work for someone else.
-
-### What I'm still unsure about
-
-I started this partly because of the agents I use at home, so that's also how I measure it.
-
-Some parts work very well. The agents' work is managed in one place, tasks are arranged the way I think about them, I can see what each one is doing, and memory is handled carefully, with me confirming what it keeps.
-
-The conversation itself is where I'm not there yet. Talking to Tony still doesn't feel like talking to the assistant I chat with at home. At home I can think out loud and it follows me. At work it feels more like operating a tool.
-
-I don't fully know why. It may be the voice and memory it brings into a chat. It may be that I gave my work agent so many rules that there's little room left for it to just talk. That's what I'm working on now.
-
-I'm also still the bottleneck. Every decision passes through me, and on busy days I'm asked too often. I haven't found the right line between asking me and acting alone, and I'm not sure how much of this carries over to a different job with different tools.
