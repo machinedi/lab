@@ -1,16 +1,16 @@
 ---
 title: "Inside the app, part 1: where the day goes in"
-dek: What I can actually turn and tune in my work agent, starting with how chat, meetings and mail become tasks, projects and memory.
+dek: What I can actually turn and tune in my personal work OS, starting with how chat, meetings and mail become tasks, projects and memory.
 date: 2026-10-22
 readingTime: "~10 min"
 topic: agent-building
 ---
 
-*This is part 1 of a two-part series, Inside the app: what I can actually turn and tune in my work agent. [Part 2](/agent-building/inside-the-app-part-2/) is about what runs without me.*
+*This is part 1 of a two-part series, Inside the app: what I can actually turn and tune in my personal work OS. [Part 2](/agent-building/inside-the-app-part-2/) is about what runs without me.*
 
 For a while now I've been building Tony, a work partner that runs on my laptop. In [an earlier post](/agent-building/building-a-work-partner/) I wrote about how it's put together. This one is about what's actually in the app: the screens I open every day, what I can change on them, and what happens behind them when I don't.
 
-I think of Tony less as a chat bot and more as a small operating system for my work life. The left rail is the whole map: **Chat, Tasks, Projects, Transcripts, Memory, Log**, and Settings at the bottom. The chat is the least interesting part. The interesting part is how talk, meetings and mail turn into work that is tracked, and what Tony knows when he does it.
+I think of Tony less as a chat bot and more as a personal operating system for my work: one place that both of us, me and the agent, look at, where every task, project and transcript is visible at any moment. The left rail is the whole map: **Chat, Tasks, Projects, Transcripts, Memory, Log**, and Settings at the bottom. The chat is just one window in it, and the least interesting one. The interesting part is how talk, meetings and mail turn into work that is tracked, and what Tony knows when he does it.
 
 The app is real. The images are mockups of the current version, and every name, company and number in them is made up.
 

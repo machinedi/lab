@@ -42,13 +42,13 @@ The filter runs while the copy is being read, not afterwards. Whatever it drops 
 
 ### The shape of it, in four phases
 
-<figure><img src="/images/praxis/03-projects.svg" alt="Sessions per project per month, month 1 to month 6. General work from the start, peaking at 34 in month 2. Context Layer Model from month 3 on. The web app, months 3 to 5. Tony, my work agent, 7 in month 5 and 30 in month 6. meetrec, the note taker, 4 in month 6. Turning points: 1, approved as a real project; 2, Tony split into its own project; 3, the reset." width="672" height="322" loading="lazy" decoding="async"><figcaption>Sessions per project per month, with three turning points: approved as a real project, Tony on its own, and the reset.</figcaption></figure>
+<figure><img src="/images/praxis/03-projects.svg" alt="Sessions per project per month, month 1 to month 6. General work from the start, peaking at 34 in month 2. Context Layer Model from month 3 on. The web app, months 3 to 5. Tony, my work OS, 7 in month 5 and 30 in month 6. meetrec, the note taker, 4 in month 6. Turning points: 1, approved as a real project; 2, Tony split into its own project; 3, the reset." width="672" height="322" loading="lazy" decoding="async"><figcaption>Sessions per project per month, with three turning points: approved as a real project, Tony on its own, and the reset.</figcaption></figure>
 
 **Early on: asking.** Short prompts, small analyses, a lot of "no" and "stop". I was learning what to ask for.
 
 **A few months in: writing knowledge down.** Projects multiplied. The biggest was the [Context Layer Model](/knowledge/context-layer-model/), a model of how a complex product is set up and where its knowledge ends. Subagents appeared. Around then it was approved as a real project at work.
 
-**Later: Tony on its own.** The web app I'd built for my routines had grown a crew of agents, and they weren't coordinated. So I started Tony, my work agent, as a separate project, so I could learn without breaking what I used every day.
+**Later: Tony on its own.** The web app I'd built for my routines had grown a crew of agents, and they weren't coordinated. So I started Tony, now my personal operating system for work, as a separate project, so I could learn without breaking what I used every day.
 
 **Most recently: releases.** Versions, installers, tests. A small meeting note taker, meetrec, became its own project too. It runs only when everyone in the meeting agrees. Then I stopped and reset Tony, after counting approvals of mine that never ran. How the agent fits together now is in [Building a work partner, one loop at a time](/agent-building/building-a-work-partner/).
 

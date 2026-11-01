@@ -1,6 +1,6 @@
 ---
 title: Building a work partner, one loop at a time
-dek: A systems view of the agent I work with every day, and how my decisions, its memory and its routines shape each other.
+dek: A systems view of the personal operating system I work in every day, and how my decisions, its memory and its routines shape each other.
 date: 2026-10-10
 readingTime: "~5 min"
 topic: agent-building
@@ -8,7 +8,7 @@ topic: agent-building
 
 I didn't set out to build an assistant. I set out to stop losing track of my own day. Mail, meetings, tasks that other people owe me, small things I promised and forgot. The first attempt was a crew of agents, each with a role and a fixed flow from research to plan to review. It worked for building things. It didn't fit the rest of the day, which is mostly mail, meetings and follow-ups. I wrote that down in my plan as plainly as I could: the crew fits build work, not daily work.
 
-So I started again with one agent. Not a tool I open when I remember, but something closer to a partner that sits next to my work, notices things, and talks to me about them. This post is the map of how it's put together. The next ones go into each part.
+So I started again with one agent, inside one place: a small operating system for my work, where my tasks, projects and meeting notes all live, and where the agent sees the same screen I do. Not a tool I open when I remember, but something closer to a partner that sits next to my work, notices things, and talks to me about them. This post is the map of how it's put together. The next ones go into each part.
 
 ### The one narrow door
 
@@ -16,11 +16,15 @@ Everything the agent wants to do leaves through one place: a decision that comes
 
 This narrow door turned out to be the most important part of the whole thing, not because of safety, but because every other part learns from what happens there. When I say yes, change the wording, or push something to later, that's the signal the rest of the system feeds on.
 
+<figure><img src="/images/work-partner/p1-loop-map.svg" alt="Mail, meetings and tasks come in; routines and conversations turn them into proposals; every proposal passes through my decision, which feeds three loops back into the agent: how it guesses priority, what it may do alone, and what memory keeps." width="960" height="460" loading="lazy" decoding="async"><figcaption>One narrow door: everything the agent proposes comes back to me, and what I decide feeds three loops back into it.</figcaption></figure>
+
 ### What I own and what it owns
 
 I split the agent's definition into pieces with clear owners. I own the charter (who it is and the lines it doesn't cross), its voice, what it knows about me, its goals, and the rules for how far it may go alone with each kind of action. It owns its memory, but it can't write to it on its own.
 
 The prompt itself is thin. Most of what makes the agent behave like it does is in those pieces, they have versions, and I can undo a change. When I want it to behave differently, I usually don't rewrite the prompt. I change one of the pieces.
+
+<figure><img src="/images/work-partner/p2-who-owns-what.svg" alt="Two columns. I own the charter, voice, what it knows about me, goals and permission rules. It owns its memory, but every write goes through my review. The prompt is thin; the pieces are versioned and can be undone." width="960" height="400" loading="lazy" decoding="async"><figcaption>What I own and what it owns. The pieces are versioned, and any change the agent wants to make to itself comes back to me.</figcaption></figure>
 
 ### How my decisions shape it
 
@@ -44,7 +48,7 @@ Routines are the agent's habits. A morning pass over mail, a follow-up on tasks 
 
 The agent can suggest new routines too, for example when I ask it for the same thing a third time. A new routine can only read, runs three times as a trial, and then asks whether to keep it. If I don't answer in two weeks, it's archived.
 
-I also count what each routine costs against the proposals I actually accept. One routine ran every fifteen minutes and produced one approved draft in 103 runs. I removed it.
+I also count what each routine costs against the proposals I actually accept. One routine ran constantly and almost never produced a draft I accepted. I removed it.
 
 ### The bottlenecks
 
@@ -58,6 +62,6 @@ Most of the later stages in the project were born from one of these three.
 
 ### Where we are
 
-It's a single-person setup, built around how I like to work, and it shows. Some parts are still rough. What I can say is that the way it manages my day is shaped by me, through small decisions, and I can see each of those decisions in the system afterwards.
+It's a single-person operating system, built around how I like to work, and it shows. Some parts are still rough. What I can say is that the way it manages my day is shaped by me, through small decisions, and I can see each of those decisions in the system afterwards.
 
 In the next posts I'll go into each part: the decision as the only way out and why sending is off the table, memory and the nightly dreaming, routines and when to kill them, and what happens when an email tries to give the agent instructions.
