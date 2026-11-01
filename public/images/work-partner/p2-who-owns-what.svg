@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" role="img" aria-labelledby="p2t p2d" font-family="Lora, Georgia, 'Times New Roman', serif">
+  <title id="p2t">What I own, what it owns</title>
+  <desc id="p2d">I own the charter, the voice, what it knows about me, the goals and the permission rules. It owns its memory, but every write goes through my review. The prompt is thin; the pieces are versioned and can be undone, and any change the agent wants to make to itself comes back to me as one more decision.</desc>
+  <defs><marker id="b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#3b362f"/></marker></defs>
+  <rect width="960" height="400" fill="#f6f1e7"/>
+  <text x="40" y="48" font-size="22" fill="#3b362f">What I own, what it owns</text>
+  <text x="40" y="72" font-size="13.5" fill="#6b6358" font-style="italic">A thin prompt. Versioned pieces with clear owners. Every change can be undone.</text>
+  <g font-size="13" fill="#3b362f">
+    <rect x="40" y="110" width="400" height="230" rx="12" fill="#fbf8f1" stroke="#3b362f" stroke-width="1.2"/>
+    <text x="62" y="140" font-weight="600" font-size="15">Mine</text>
+    <text x="62" y="172">Charter: who it is, lines it doesn't cross</text>
+    <text x="62" y="198">Voice</text>
+    <text x="62" y="224">What it knows about me</text>
+    <text x="62" y="250">Goals</text>
+    <text x="62" y="276">Permission rules: how far it goes alone</text>
+    <text x="62" y="316" font-size="12" fill="#6b6358" font-style="italic">each piece has versions</text>
+    <rect x="520" y="110" width="400" height="140" rx="12" fill="#fbf8f1" stroke="#3b362f" stroke-width="1.2"/>
+    <text x="542" y="140" font-weight="600" font-size="15">Its own</text>
+    <text x="542" y="172">Memory</text>
+    <text x="542" y="198" font-size="12">Every fact: source, date, scope</text>
+    <text x="542" y="222" font-size="12">Old facts kept as history, not deleted</text>
+    <rect x="520" y="280" width="400" height="60" rx="12" fill="#efe6d4" stroke="#8a5a3c" stroke-width="1.8"/>
+    <text x="542" y="306" font-weight="600">But it can't write alone</text>
+    <text x="542" y="326" font-size="12">Keep, not true, correct, skip: my call</text>
+    <path d="M720 250V274" stroke="#8a5a3c" stroke-width="1.3" fill="none" marker-end="url(#b)"/>
+    <path d="M520 310C480 310 480 230 446 230" stroke="#8a5a3c" stroke-width="1.3" fill="none" marker-end="url(#b)"/>
+    <text x="40" y="374" font-size="12" fill="#6b6358" font-style="italic">When it wants to change itself, a new charter line or a new permission, that request comes back to me as one more decision.</text>
+  </g>
+</svg>

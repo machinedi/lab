@@ -8,7 +8,7 @@ topic: agent-building
 
 *This is part 2 of Inside the app: what I can actually turn and tune in my work agent. [Part 1](/agent-building/inside-the-app-part-1/) covered where the day goes in.*
 
-Part 1 was about what comes in: chat, meetings, mail, and how they become tasks and memory. He files memory from mail, chat and routines on his own now. Memory from a meeting still waits for me, by choice, not because it has to. This part is about the rest of what runs without me: routines, skills, the log, and the settings around them. Same as before, the app is real and the images are mockups with made-up details.
+Part 1 was about what comes in: chat, meetings, mail, and how they become tasks and memory. He files memory from mail, chat and routines on his own now. Memory from a meeting still waits for me, by choice, not because it has to. This part is about the rest of the operating system, the parts that run without me: routines, skills, the log, and the settings around them. Same as before, the app is real and the images are mockups with made-up details.
 
 ### Routines: I wrote it once, then forgot what it does
 
